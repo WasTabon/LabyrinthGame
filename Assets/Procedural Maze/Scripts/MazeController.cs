@@ -9,7 +9,10 @@ namespace ProceduralMaze
         public bool generateEntry = true;
 
         private MazeCell[,] maze;
-        public Vector2Int entry;
+
+        // теперь храним и координату, и саму клетку
+        public Vector2Int entryPosition;
+        public MazeCell entryCell;
 
         public MazeCell[,] GetMaze()
         {
@@ -26,7 +29,7 @@ namespace ProceduralMaze
             if (generateEntry)
                 SetEntry();
 
-            CarvePath(entry.x, entry.y);
+            CarvePath(entryPosition.x, entryPosition.y);
 
             return maze;
         }
@@ -102,10 +105,12 @@ namespace ProceduralMaze
         void SetEntry()
         {
             int entryY = UnityEngine.Random.Range(0, mazeHeight);
-            entry = new Vector2Int(0, entryY);
+            entryPosition = new Vector2Int(0, entryY);
 
-            maze[entry.x, entry.y].leftWall = false; // только вход
-            Debug.Log($"Entry at {entry}");
+            entryCell = maze[entryPosition.x, entryPosition.y];
+            entryCell.leftWall = false; // убираем только вход
+
+            Debug.Log($"Entry at {entryPosition} -> Cell ref set");
         }
     }
 

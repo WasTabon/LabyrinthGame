@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0effc89e1d134bf4994c37608c9f96fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeWidth: 10
-  mazeHeight: 10
+  mazeWidth: 15
+  mazeHeight: 30
   generateEntry: 1
   entry: {x: 0, y: 0}
 --- !u!114 &4257060068633867568
@@ -62,5 +62,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mazeController: {fileID: 7206655196362132549}
-  mazeCellPrefab: {fileID: 7402445761321271947, guid: 966c29ba7130e6648bb22f5158380b5b, type: 3}
+  mazeCellPrefab: {fileID: 2881806867204522212, guid: 0294b134cb0b48f4aa66821b79d94358, type: 3}
   cellSize: 15
