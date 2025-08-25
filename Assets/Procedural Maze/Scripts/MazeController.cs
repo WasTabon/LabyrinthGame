@@ -7,10 +7,10 @@ namespace ProceduralMaze
     public class MazeController : MonoBehaviour
     {
         [Range(5, 100)] public int mazeWidth = 5, mazeHeight = 5;
-        public bool generateEntryExit = true;
+        public bool generateEntry = true;
 
         private MazeCell[,] maze;
-        public Vector2Int entry, exit;
+        public Vector2Int entry;
 
         public MazeCell[,] GetMaze()
         {
@@ -24,8 +24,8 @@ namespace ProceduralMaze
                 }
             }
 
-            if (generateEntryExit)
-                SetEntryAndExit();
+            if (generateEntry)
+                SetEntry();
 
             CarvePath(entry.x, entry.y);
 
@@ -55,8 +55,6 @@ namespace ProceduralMaze
                     path.Push(next);
                 }
             }
-
-            EnsureExitPath();
         }
 
         List<Vector2Int> GetValidNeighbors(Vector2Int cell)
@@ -102,39 +100,13 @@ namespace ProceduralMaze
             }
         }
 
-        void SetEntryAndExit()
+        void SetEntry()
         {
             int entryY = UnityEngine.Random.Range(0, mazeHeight);
-            int exitY = UnityEngine.Random.Range(0, mazeHeight);
-
             entry = new Vector2Int(0, entryY);
-            exit = new Vector2Int(mazeWidth - 1, exitY);
 
-            maze[entry.x, entry.y].leftWall = false;  // Open Entry
-            maze[exit.x, exit.y].rightWall = false;   // Open Exit
-
-            Debug.Log($"Entry at {entry}, Exit at {exit}");
-        }
-
-        void EnsureExitPath()
-        {
-            if (maze[exit.x, exit.y].visited) return;
-
-            List<Vector2Int> neighbors = GetValidNeighbors(exit);
-
-            if (neighbors.Count > 0)
-            {
-                Vector2Int nearest = neighbors[0];
-
-                foreach (var neighbor in neighbors)
-                {
-                    if (Vector2Int.Distance(exit, neighbor) < Vector2Int.Distance(exit, nearest))
-                        nearest = neighbor;
-                }
-
-                BreakWalls(exit, new Vector2Int(0, 1));
-                maze[exit.x, exit.y].visited = true;
-            }
+            maze[entry.x, entry.y].leftWall = false; // только вход
+            Debug.Log($"Entry at {entry}");
         }
     }
 

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace ProceduralMaze
 {
@@ -38,23 +37,23 @@ namespace ProceduralMaze
             {
                 for (int y = 0; y < mazeController.mazeHeight; y++)
                 {
-                    GameObject newCell = Instantiate(mazeCellPrefab, new Vector3((float)x * cellSize, 0f, (float)y * cellSize), Quaternion.identity, transform);
+                    GameObject newCell = Instantiate(
+                        mazeCellPrefab,
+                        new Vector3((float)x * cellSize, 0f, (float)y * cellSize),
+                        Quaternion.identity,
+                        transform
+                    );
 
                     MazeCellObject mazeCell = newCell.GetComponent<MazeCellObject>();
 
                     bool top = maze[x, y].topWall;
                     bool left = maze[x, y].leftWall;
-                    bool right = x == mazeController.mazeWidth - 1;
-
-                    if (mazeController.exit.x == x && mazeController.exit.y == y)
-                        right = false;
-
-                    bool bottom = y == 0;
+                    bool right = maze[x, y].rightWall;
+                    bool bottom = maze[x, y].bottomWall;
 
                     mazeCell.Init(top, bottom, left, right);
                 }
             }
         }
     }
-
 }
