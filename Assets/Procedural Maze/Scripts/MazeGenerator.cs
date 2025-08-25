@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProceduralMaze
@@ -12,7 +10,6 @@ namespace ProceduralMaze
         [SerializeField] GameObject mazeCellPrefab;
 
         public float cellSize = 1.0f;
-        public int numberOfProps = 10;
 
         private void Awake()
         {

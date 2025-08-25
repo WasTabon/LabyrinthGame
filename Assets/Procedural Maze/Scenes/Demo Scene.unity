@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazeController: {fileID: 1474884993}
   mazeCellPrefab: {fileID: 7402445761321271947, guid: 966c29ba7130e6648bb22f5158380b5b, type: 3}
-  cellSize: 15
+  cellSize: 1
   numberOfProps: 10
 --- !u!114 &1474884993
 MonoBehaviour:
@@ -264,9 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazeWidth: 10
   mazeHeight: 10
-  generateEntryExit: 1
+  generateEntry: 1
   entry: {x: 0, y: 0}
-  exit: {x: 0, y: 0}
 --- !u!4 &1474884994
 Transform:
   m_ObjectHideFlags: 0
