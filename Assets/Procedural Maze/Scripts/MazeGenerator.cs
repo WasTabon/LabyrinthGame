@@ -9,10 +9,15 @@ namespace ProceduralMaze
         [SerializeField] MazeController mazeController;
         [SerializeField] GameObject mazeCellPrefab;
 
-        private float cellSize;
+        public float rotation;
+        
+        public GameObject prefab;
+        
+        public GameObject spawnPos;
 
-        // Ссылка на объект входа
         public GameObject entryObject;
+        
+        private float cellSize;
 
         private void Awake()
         {
@@ -85,6 +90,30 @@ namespace ProceduralMaze
                     }
                 }
             }
+            
+            GameObject mazeParent = Instantiate(prefab);
+            mazeParent.transform.position = entryObject.transform.position;
+            transform.SetParent(mazeParent.transform);
+            mazeParent.transform.localRotation = Quaternion.Euler(0f, rotation, 0f);
+            mazeParent.transform.position = spawnPos.transform.position;
+
+            switch (rotation)
+            {
+                case 0:
+                    LevelController.Instance._maze0f = gameObject;
+                    break;
+                case 90f:
+                    LevelController.Instance._maze90f = gameObject;
+                    break;
+                case 180f:
+                    LevelController.Instance._maze180f = gameObject;
+                    break;
+                case -90f:
+                    LevelController.Instance._mazeM90f = gameObject;
+                    break;
+            }
+            
+            gameObject.SetActive(false);
         }
     }
 }
