@@ -46,6 +46,8 @@ public class CoinController : MonoBehaviour
                 MusicController.Instance.PlaySpecificSound(pickupSound);
             }
 
+            InventoryController.Instance.coinsCount++;
+            
             // Отключаем монету
             gameObject.SetActive(false);
         }

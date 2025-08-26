@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProceduralMaze
@@ -10,14 +11,16 @@ namespace ProceduralMaze
         [SerializeField] GameObject mazeCellPrefab;
 
         public float rotation;
-        
         public GameObject prefab;
-        
         public GameObject spawnPos;
 
         public GameObject entryObject;
         
         private float cellSize;
+
+        [Header("Coin Settings")]
+        [SerializeField] private GameObject coinPrefab;
+        [SerializeField] private int coinCount = 10;
 
         private void Awake()
         {
@@ -91,6 +94,9 @@ namespace ProceduralMaze
                 }
             }
             
+            // --- Спавн монет ---
+            SpawnCoins(maze);
+
             GameObject mazeParent = Instantiate(prefab);
             mazeParent.transform.position = entryObject.transform.position;
             transform.SetParent(mazeParent.transform);
@@ -114,6 +120,46 @@ namespace ProceduralMaze
             }
             
             gameObject.SetActive(false);
+        }
+
+        private void SpawnCoins(MazeCell[,] maze)
+        {
+            if (coinPrefab == null)
+            {
+                Debug.LogWarning("Coin prefab is not assigned!");
+                return;
+            }
+
+            List<Vector2Int> availableCells = new List<Vector2Int>();
+
+            for (int x = 0; x < mazeController.mazeWidth; x++)
+            {
+                for (int y = 0; y < mazeController.mazeHeight; y++)
+                {
+                    // не ставим монеты в входную клетку
+                    if (mazeController.entryPosition.x == x && mazeController.entryPosition.y == y)
+                        continue;
+
+                    availableCells.Add(new Vector2Int(x, y));
+                }
+            }
+
+            int coinsToSpawn = Mathf.Min(coinCount, availableCells.Count);
+
+            for (int i = 0; i < coinsToSpawn; i++)
+            {
+                int randomIndex = Random.Range(0, availableCells.Count);
+                Vector2Int pos = availableCells[randomIndex];
+                availableCells.RemoveAt(randomIndex);
+
+                Vector3 spawnPos = new Vector3(
+                    pos.x * cellSize + cellSize / 2f,
+                    0.5f, // немного над полом
+                    pos.y * cellSize + cellSize / 2f
+                );
+
+                Instantiate(coinPrefab, spawnPos, Quaternion.identity, transform);
+            }
         }
     }
 }
