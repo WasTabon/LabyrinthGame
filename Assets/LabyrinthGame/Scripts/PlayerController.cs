@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        
+        // зробити спавн монеток
     }
 
     private void FixedUpdate()
@@ -107,6 +109,8 @@ public class PlayerController : MonoBehaviour
             case CameraState.FollowReduced:
                 // теперь без Clamp! Камера может выходить за границы
                 Vector3 reducedOffset = cameraOffset * 0.5f;
+                reducedOffset.y = 8f;
+                Debug.Log(reducedOffset);
                 Vector3 reducedTarget = transform.position + reducedOffset;
 
                 cameraTransform.position = Vector3.Lerp(cameraTransform.position, reducedTarget, cameraFollowSpeed * Time.deltaTime);

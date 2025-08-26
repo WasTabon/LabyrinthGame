@@ -1,17 +1,22 @@
 using UnityEngine;
 
+public enum MazeType
+{
+    m0f,
+    m90f,
+    m180f,
+    mN90f
+}
+
 public class CollisionController : MonoBehaviour
 {
-    public GameObject target;
-    
+    public MazeType target;
+
     private void OnTriggerEnter(Collider coll)
     {
         if (coll.gameObject.TryGetComponent(out PlayerController _))
         {
-            LevelController.Instance._maze0f.SetActive(false);
-            LevelController.Instance._maze90f.SetActive(false);
-            LevelController.Instance._maze180f.SetActive(false);
-            LevelController.Instance._mazeM90f.SetActive(false);
+            LevelController.Instance.ActivateMaze(target);
         }
     }
 }
