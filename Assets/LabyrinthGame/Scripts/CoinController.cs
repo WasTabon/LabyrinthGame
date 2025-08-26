@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class CoinController : MonoBehaviour
 {
+    public event Action OnCoinTake;
+    
     [Header("Movement Settings")]
     [SerializeField] private float rotationSpeed = 100f;   // скорость вращения
     [SerializeField] private float floatAmplitude = 0.25f; // амплитуда подъема/спуска
@@ -17,6 +20,8 @@ public class CoinController : MonoBehaviour
     private void Start()
     {
         startPos = transform.position;
+
+        OnCoinTake += UIController.Instance.HandleCoinText;
     }
 
     private void Update()
@@ -47,6 +52,7 @@ public class CoinController : MonoBehaviour
             }
 
             InventoryController.Instance.coinsCount++;
+            OnCoinTake?.Invoke();
             
             // Отключаем монету
             gameObject.SetActive(false);

@@ -5,6 +5,7 @@ public class InventoryController : MonoBehaviour
 {
     public static InventoryController Instance;
 
+    public int keysCouns;
     public int coinsCount;
     
     private void Awake()

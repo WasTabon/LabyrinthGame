@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
@@ -9,6 +9,9 @@ public class UIController : MonoBehaviour
     [Header("UI Elements")]
     public RectTransform keysHandler;
     public RectTransform coinsHandler;
+
+    public TextMeshProUGUI _keysText;
+    public TextMeshProUGUI _coinsText;
 
     [Header("Animation Settings")]
     public float duration = 0.5f; // время анимации
@@ -32,6 +35,13 @@ public class UIController : MonoBehaviour
 
         keysHandler.gameObject.SetActive(true);
         coinsHandler.gameObject.SetActive(false);
+        
+        HandleCoinText();
+    }
+
+    public void HandleCoinText()
+    {
+        _coinsText.text = InventoryController.Instance.coinsCount.ToString();
     }
 
     public void ToggleUI()
