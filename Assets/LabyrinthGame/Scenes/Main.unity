@@ -232,6 +232,8 @@ MonoBehaviour:
   changeKeyNumberPanel: {fileID: 1342932771}
   keyPanel: {fileID: 119640486}
   neededKeyText: {fileID: 456818207}
+  key1Text: {fileID: 1998090460}
+  key2Text: {fileID: 994640883}
   currentKeyNumberText: {fileID: 2114648413}
   keysCount:
   - number: 1

@@ -18,6 +18,8 @@ public class InventoryController : MonoBehaviour
     public GameObject keyPanel;
     public TextMeshProUGUI neededKeyText;
 
+    public TextMeshProUGUI key1Text;
+    public TextMeshProUGUI key2Text;
     public TextMeshProUGUI currentKeyNumberText;
     
     public List<Key> keysCount;
@@ -25,6 +27,8 @@ public class InventoryController : MonoBehaviour
     public int runesCount;
 
     public int neededKey = 1;
+
+    public GameObject currentDoor;
 
     private int currentKey;
     
@@ -35,6 +39,11 @@ public class InventoryController : MonoBehaviour
 
     private void Update()
     {
+        if (key1Text.gameObject.activeSelf)
+            key1Text.text = keysCount[0].number.ToString();
+        if (key2Text.gameObject.activeSelf)
+            key1Text.text = keysCount[1].number.ToString();
+        
         if (currentKey == 1)
         {
             currentKeyNumberText.text = $"Current number: {keysCount[0].number}";
@@ -45,9 +54,10 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    public void SetNeededKey(int key)
+    public void SetNeededKeyDoor(int key, GameObject door)
     {
         neededKey = key;
+        currentDoor = door;
     }
 
     public void OpenKeyPanel()

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour
@@ -9,7 +8,7 @@ public class DoorController : MonoBehaviour
     {
         if (coll.gameObject.TryGetComponent(out PlayerController _))
         {
-            InventoryController.Instance.SetNeededKey(needKey);
+            InventoryController.Instance.SetNeededKeyDoor(needKey, gameObject);
         }
     }
 }
