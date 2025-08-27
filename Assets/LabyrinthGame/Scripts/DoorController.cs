@@ -9,6 +9,15 @@ public class DoorController : MonoBehaviour
         if (coll.gameObject.TryGetComponent(out PlayerController _))
         {
             InventoryController.Instance.SetNeededKeyDoor(needKey, gameObject);
+            UIController.Instance.ShowOpenKeyButton();
+        }
+    }
+    
+    private void OnTriggerExit(Collider coll)
+    {
+        if (coll.gameObject.TryGetComponent(out PlayerController _))
+        {
+            UIController.Instance.HideOpenKeyButton();
         }
     }
 }

@@ -42,7 +42,7 @@ public class InventoryController : MonoBehaviour
         if (key1Text.gameObject.activeSelf)
             key1Text.text = keysCount[0].number.ToString();
         if (key2Text.gameObject.activeSelf)
-            key1Text.text = keysCount[1].number.ToString();
+            key2Text.text = keysCount[1].number.ToString();
         
         if (currentKey == 1)
         {
@@ -62,7 +62,11 @@ public class InventoryController : MonoBehaviour
 
     public void OpenKeyPanel()
     {
+        UIController.Instance.HideOpenKeyButton();
         neededKeyText.text = $"Need key: {neededKey}";
+        currentKeyNumberText.text = $"Current number: {keysCount[0].number}";
+        currentKeyNumberText.text = $"Current number: {keysCount[1].number}";
+        keyPanel.SetActive(true);
     }
     
     public void HandleUseKey1()
@@ -72,6 +76,11 @@ public class InventoryController : MonoBehaviour
             currentKey = 1;
             changeKeyNumberPanel.SetActive(true);
         }
+        else
+        {
+            keyPanel.SetActive(false);
+            currentDoor.SetActive(false);
+        }
     }
     public void HandleUseKey2()
     {
@@ -79,6 +88,11 @@ public class InventoryController : MonoBehaviour
         {
             currentKey = 2;
             changeKeyNumberPanel.SetActive(true);
+        }
+        else
+        {
+            keyPanel.SetActive(false);
+            currentDoor.SetActive(false);
         }
     }
 
