@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -55,6 +56,11 @@ public class UIController : MonoBehaviour
         runesText.text = InventoryController.Instance.runesCount.ToString();
     }
 
+    public void HandleLeave()
+    {
+        SceneManager.LoadScene("HubScene");
+    }
+    
     public void HandleCoinText()
     {
         _coinsText.text = InventoryController.Instance.coinsCount.ToString();

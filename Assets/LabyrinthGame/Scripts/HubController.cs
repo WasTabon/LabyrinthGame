@@ -29,6 +29,17 @@ public class HubController : MonoBehaviour
     private Vector2 swimOriginalPos;
     private Vector2 leaveOriginalPos;
 
+    [Header("Purchases")]
+    public GameObject location1;
+    public GameObject location2;
+    public GameObject location3;
+
+    public TextMeshProUGUI location1ButtonText;
+    public TextMeshProUGUI location2ButtonText;
+    public TextMeshProUGUI location3ButtonText;
+
+    public GameObject notEnoughMoneyPanel;
+
     private void Awake()
     {
         Instance = this;
@@ -36,13 +47,32 @@ public class HubController : MonoBehaviour
 
     private void Start()
     {
-        coinsCount = coinsCount + PlayerPrefs.GetInt("coins", 0);
-        
+        coinsCount = PlayerPrefs.GetInt("coins", 0);
+
         swimOriginalPos = swimButton.anchoredPosition;
         leaveOriginalPos = leaveButton.anchoredPosition;
 
         swimButton.anchoredPosition = swimOriginalPos - new Vector2(0, offsetY);
         leaveButton.anchoredPosition = leaveOriginalPos - new Vector2(0, offsetY);
+
+        // Загружаем покупки
+        if (PlayerPrefs.GetInt("location1", 0) == 1)
+        {
+            location1.SetActive(true);
+            location1ButtonText.text = "PURCHASED";
+        }
+
+        if (PlayerPrefs.GetInt("location2", 0) == 1)
+        {
+            location2.SetActive(true);
+            location2ButtonText.text = "PURCHASED";
+        }
+
+        if (PlayerPrefs.GetInt("location3", 0) == 1)
+        {
+            location3.SetActive(true);
+            location3ButtonText.text = "PURCHASED";
+        }
     }
 
     private void Update()
@@ -102,4 +132,57 @@ public class HubController : MonoBehaviour
 
     public void ShowLeaveButton() => ShowButton(leaveButton, leaveOriginalPos);
     public void HideLeaveButton() => HideButton(leaveButton, leaveOriginalPos);
+
+
+    // --- Методы покупки ---
+    public void BuyLocation1()
+    {
+        if (coinsCount >= 50)
+        {
+            coinsCount -= 50;
+            PlayerPrefs.SetInt("coins", coinsCount);
+            location1.SetActive(true);
+            location1ButtonText.text = "PURCHASED";
+            PlayerPrefs.SetInt("location1", 1);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            notEnoughMoneyPanel.SetActive(true);
+        }
+    }
+
+    public void BuyLocation2()
+    {
+        if (coinsCount >= 50)
+        {
+            coinsCount -= 50;
+            PlayerPrefs.SetInt("coins", coinsCount);
+            location2.SetActive(true);
+            location2ButtonText.text = "PURCHASED";
+            PlayerPrefs.SetInt("location2", 1);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            notEnoughMoneyPanel.SetActive(true);
+        }
+    }
+
+    public void BuyLocation3()
+    {
+        if (coinsCount >= 50)
+        {
+            coinsCount -= 50;
+            PlayerPrefs.SetInt("coins", coinsCount);
+            location3.SetActive(true);
+            location3ButtonText.text = "PURCHASED";
+            PlayerPrefs.SetInt("location3", 1);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            notEnoughMoneyPanel.SetActive(true);
+        }
+    }
 }
