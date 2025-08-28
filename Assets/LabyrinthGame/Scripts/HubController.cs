@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class HubController : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class HubController : MonoBehaviour
 
     private void Start()
     {
-        coinsCount = PlayerPrefs.GetInt("coins", 0);
+        coinsCount = coinsCount + PlayerPrefs.GetInt("coins", 0);
         
         swimOriginalPos = swimButton.anchoredPosition;
         leaveOriginalPos = leaveButton.anchoredPosition;
@@ -79,6 +80,11 @@ public class HubController : MonoBehaviour
         player.transform.position = exitPos.position;
         player.GetComponent<PlayerController>().moveSpeed = 5;
         animator.SetBool("Swim", false);
+    }
+
+    public void HandlePlay()
+    {
+        SceneManager.LoadScene("Main");
     }
     
     public void ShowButton(RectTransform button, Vector2 originalPos)
