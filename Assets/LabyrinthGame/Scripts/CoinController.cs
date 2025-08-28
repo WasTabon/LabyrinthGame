@@ -54,6 +54,9 @@ public class CoinController : MonoBehaviour
             InventoryController.Instance.coinsCount++;
             OnCoinTake?.Invoke();
             
+            PlayerPrefs.SetInt("coins", InventoryController.Instance.coinsCount);
+            PlayerPrefs.Save();
+            
             // Отключаем монету
             gameObject.SetActive(false);
         }

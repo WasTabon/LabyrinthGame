@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 cameraOffset = new Vector3(0, 10, -5);
     [SerializeField] private float cameraFollowSpeed = 5f;
 
-    [Header("Camera Limits")]
+    [Header("Camera Limits")] 
+    public bool noHaveLimit;
+    
     [SerializeField] private Transform cameraZoneCenter;   // центр зоны
     [SerializeField] private Vector2 cameraZoneSize = new Vector2(40, 40); // размеры зоны
     [SerializeField] private float reattachDistance = 5f; // дистанция, после которой камера "подцепится" с offset/2
@@ -56,73 +58,84 @@ public class PlayerController : MonoBehaviour
     }
 
     private void LateUpdate()
+{
+    if (cameraTransform == null || cameraZoneCenter == null) return;
+
+    if (noHaveLimit)
     {
-        if (cameraTransform == null || cameraZoneCenter == null) return;
-
-        // вычисляем границы
-        Vector3 halfSize = new Vector3(cameraZoneSize.x / 2f, 0, cameraZoneSize.y / 2f);
-        Vector3 minBounds = cameraZoneCenter.position - halfSize;
-        Vector3 maxBounds = cameraZoneCenter.position + halfSize;
-
-        // обычная цель
+        // Игнорируем любые лимиты и состояния камеры
         Vector3 desiredPos = transform.position + cameraOffset;
-
-        // "зажатая" цель в границах
-        Vector3 clampedPos = new Vector3(
-            Mathf.Clamp(desiredPos.x, minBounds.x, maxBounds.x),
-            desiredPos.y,
-            Mathf.Clamp(desiredPos.z, minBounds.z, maxBounds.z)
+        cameraTransform.position = Vector3.Lerp(
+            cameraTransform.position,
+            desiredPos,
+            cameraFollowSpeed * Time.deltaTime
         );
-
-        bool outsideX = transform.position.x < minBounds.x || transform.position.x > maxBounds.x;
-        bool outsideZ = transform.position.z < minBounds.z || transform.position.z > maxBounds.z;
-        bool playerOutside = outsideX || outsideZ;
-
-        switch (cameraState)
-        {
-            case CameraState.Normal:
-                if (playerOutside)
-                {
-                    lastClampedPosition = clampedPos; // запоминаем точку границы
-                    cameraState = CameraState.StuckAtBorder;
-                }
-                cameraTransform.position = Vector3.Lerp(cameraTransform.position, clampedPos, cameraFollowSpeed * Time.deltaTime);
-                break;
-
-            case CameraState.StuckAtBorder:
-                // остаёмся на границе
-                cameraTransform.position = Vector3.Lerp(cameraTransform.position, lastClampedPosition, cameraFollowSpeed * Time.deltaTime);
-
-                // если игрок отбежал достаточно далеко — разрешаем следить за ним с уменьшенным offset
-                if (Vector3.Distance(transform.position, lastClampedPosition) > reattachDistance)
-                {
-                    cameraState = CameraState.FollowReduced;
-                }
-
-                // если вернулся внутрь — сразу в нормальный режим
-                if (!playerOutside)
-                {
-                    cameraState = CameraState.Normal;
-                }
-                break;
-
-            case CameraState.FollowReduced:
-                // теперь без Clamp! Камера может выходить за границы
-                Vector3 reducedOffset = cameraOffset * 0.5f;
-                reducedOffset.y = 8f;
-                Debug.Log(reducedOffset);
-                Vector3 reducedTarget = transform.position + reducedOffset;
-
-                cameraTransform.position = Vector3.Lerp(cameraTransform.position, reducedTarget, cameraFollowSpeed * Time.deltaTime);
-
-                // если игрок вернулся внутрь — вернуться к Normal
-                if (!playerOutside)
-                {
-                    cameraState = CameraState.Normal;
-                }
-                break;
-        }
+        return; // выходим, дальше не проверяем
     }
+
+    // вычисляем границы
+    Vector3 halfSize = new Vector3(cameraZoneSize.x / 2f, 0, cameraZoneSize.y / 2f);
+    Vector3 minBounds = cameraZoneCenter.position - halfSize;
+    Vector3 maxBounds = cameraZoneCenter.position + halfSize;
+
+    // обычная цель
+    Vector3 desiredPosClamped = transform.position + cameraOffset;
+
+    // "зажатая" цель в границах
+    Vector3 clampedPos = new Vector3(
+        Mathf.Clamp(desiredPosClamped.x, minBounds.x, maxBounds.x),
+        desiredPosClamped.y,
+        Mathf.Clamp(desiredPosClamped.z, minBounds.z, maxBounds.z)
+    );
+
+    bool outsideX = transform.position.x < minBounds.x || transform.position.x > maxBounds.x;
+    bool outsideZ = transform.position.z < minBounds.z || transform.position.z > maxBounds.z;
+    bool playerOutside = outsideX || outsideZ;
+
+    switch (cameraState)
+    {
+        case CameraState.Normal:
+            if (playerOutside)
+            {
+                lastClampedPosition = clampedPos; // запоминаем точку границы
+                cameraState = CameraState.StuckAtBorder;
+            }
+            cameraTransform.position = Vector3.Lerp(cameraTransform.position, clampedPos, cameraFollowSpeed * Time.deltaTime);
+            break;
+
+        case CameraState.StuckAtBorder:
+            // остаёмся на границе
+            cameraTransform.position = Vector3.Lerp(cameraTransform.position, lastClampedPosition, cameraFollowSpeed * Time.deltaTime);
+
+            // если игрок отбежал достаточно далеко — разрешаем следить за ним с уменьшенным offset
+            if (Vector3.Distance(transform.position, lastClampedPosition) > reattachDistance)
+            {
+                cameraState = CameraState.FollowReduced;
+            }
+
+            // если вернулся внутрь — сразу в нормальный режим
+            if (!playerOutside)
+            {
+                cameraState = CameraState.Normal;
+            }
+            break;
+
+        case CameraState.FollowReduced:
+            // теперь без Clamp! Камера может выходить за границы
+            Vector3 reducedOffset = cameraOffset * 0.5f;
+            reducedOffset.y = 8f;
+            Vector3 reducedTarget = transform.position + reducedOffset;
+
+            cameraTransform.position = Vector3.Lerp(cameraTransform.position, reducedTarget, cameraFollowSpeed * Time.deltaTime);
+
+            // если игрок вернулся внутрь — вернуться к Normal
+            if (!playerOutside)
+            {
+                cameraState = CameraState.Normal;
+            }
+            break;
+    }
+}
 
     private void OnDrawGizmos()
     {
