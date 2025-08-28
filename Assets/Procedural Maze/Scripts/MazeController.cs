@@ -23,7 +23,7 @@ namespace ProceduralMaze
                 for (int y = 0; y < mazeHeight; y++)
                 {
                     maze[x, y] = new MazeCell(x, y);
-                }
+                }   
             }
 
             if (generateEntry)

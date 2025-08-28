@@ -121,6 +121,27 @@ namespace ProceduralMaze
             
             gameObject.SetActive(false);
         }
+        
+        public Vector3 GetRandomCellPosition()
+        {
+            int x = Random.Range(0, mazeController.mazeWidth);
+            int y = Random.Range(0, mazeController.mazeHeight);
+
+            // чтобы не на входе
+            if (x == mazeController.entryPosition.x && y == mazeController.entryPosition.y)
+                x = (x + 1) % mazeController.mazeWidth;
+
+            // локальная позиция в системе координат MazeGenerator
+            Vector3 localPos = new Vector3(
+                x * cellSize + cellSize / 2f,
+                0.5f,
+                y * cellSize + cellSize / 2f
+            );
+
+            // переводим в мировую позицию с учётом поворота/сдвига
+            //return transform.TransformPoint(localPos);
+            return localPos;
+        }
 
         private void SpawnCoins(MazeCell[,] maze)
         {
