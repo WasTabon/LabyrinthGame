@@ -228,6 +228,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48b419e0812a67468844cb78146337a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyHandler1: {fileID: 1799528520}
+  keyHandler2: {fileID: 1507844477}
   notEnoughRunesPanel: {fileID: 355670724}
   changeKeyNumberPanel: {fileID: 1342932771}
   keyPanel: {fileID: 119640486}
@@ -242,6 +244,7 @@ MonoBehaviour:
   runesCount: 2
   neededKey: 1
   currentDoor: {fileID: 0}
+  keysInInventory: 2
 --- !u!1 &68547344
 GameObject:
   m_ObjectHideFlags: 0
@@ -4194,6 +4197,7 @@ MonoBehaviour:
   openKeyPanelButton: {fileID: 1295417212}
   keysHandler: {fileID: 1916668542}
   coinsHandler: {fileID: 1436940562}
+  runesText: {fileID: 606059242}
   _keysText: {fileID: 456818207}
   _coinsText: {fileID: 248208283}
   duration: 0.5
@@ -8678,7 +8682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.35885534, y: 0.8504022}
   m_AnchorMax: {x: 0.35885534, y: 0.8504022}
-  m_AnchoredPosition: {x: -2, y: 6.000061}
+  m_AnchoredPosition: {x: -2, y: 6}
   m_SizeDelta: {x: 396.9299, y: 146.974}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1571529444

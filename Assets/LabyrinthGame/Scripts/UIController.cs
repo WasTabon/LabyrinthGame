@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
@@ -12,6 +13,7 @@ public class UIController : MonoBehaviour
     public RectTransform keysHandler;
     public RectTransform coinsHandler;
 
+    public TextMeshProUGUI runesText;
     public TextMeshProUGUI _keysText;
     public TextMeshProUGUI _coinsText;
 
@@ -45,6 +47,12 @@ public class UIController : MonoBehaviour
         // сохраняем изначальную позицию кнопки и уводим вниз
         openKeyButtonPos = openKeyPanelButton.anchoredPosition;
         openKeyPanelButton.anchoredPosition = openKeyButtonPos - new Vector2(0, offset);
+    }
+
+    private void Update()
+    {
+        _keysText.text = InventoryController.Instance.keysInInventory.ToString();
+        runesText.text = InventoryController.Instance.runesCount.ToString();
     }
 
     public void HandleCoinText()

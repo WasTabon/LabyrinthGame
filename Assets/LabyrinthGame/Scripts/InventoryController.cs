@@ -13,6 +13,9 @@ public class InventoryController : MonoBehaviour
 {
     public static InventoryController Instance;
 
+    public GameObject keyHandler1;
+    public GameObject keyHandler2;
+    
     public GameObject notEnoughRunesPanel;
     public GameObject changeKeyNumberPanel;
     public GameObject keyPanel;
@@ -29,6 +32,8 @@ public class InventoryController : MonoBehaviour
     public int neededKey = 1;
 
     public GameObject currentDoor;
+
+    public int keysInInventory = 2;
 
     private int currentKey;
     
@@ -80,6 +85,8 @@ public class InventoryController : MonoBehaviour
         {
             keyPanel.SetActive(false);
             currentDoor.SetActive(false);
+            keyHandler1.SetActive(false);
+            keysInInventory--;
         }
     }
     public void HandleUseKey2()
@@ -93,6 +100,8 @@ public class InventoryController : MonoBehaviour
         {
             keyPanel.SetActive(false);
             currentDoor.SetActive(false);
+            keyHandler2.SetActive(false);
+            keysInInventory--;
         }
     }
 
