@@ -27,6 +27,7 @@ public class InventoryController : MonoBehaviour
     
     public List<Key> keysCount;
     public int coinsCount;
+    public int ballsCount;
     public int runesCount;
 
     public int neededKey = 1;

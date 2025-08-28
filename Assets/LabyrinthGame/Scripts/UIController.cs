@@ -17,6 +17,7 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI runesText;
     public TextMeshProUGUI _keysText;
     public TextMeshProUGUI _coinsText;
+    public TextMeshProUGUI _ballsText;
 
     [Header("Animation Settings")]
     public float duration = 0.5f; // время анимации
@@ -64,6 +65,10 @@ public class UIController : MonoBehaviour
     public void HandleCoinText()
     {
         _coinsText.text = InventoryController.Instance.coinsCount.ToString();
+    }
+    public void HandleBallText()
+    {
+        _ballsText.text = InventoryController.Instance.coinsCount.ToString();
     }
 
     public void ToggleUI()
