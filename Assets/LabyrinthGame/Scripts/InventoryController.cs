@@ -13,6 +13,11 @@ public class InventoryController : MonoBehaviour
 {
     public static InventoryController Instance;
 
+    public TextMeshProUGUI coinTextInventory;
+    public TextMeshProUGUI keyTextInventory;
+    public TextMeshProUGUI runeTextInventory;
+    public TextMeshProUGUI ballTextInventory;
+    
     public List<DoorController> doors;
     
     public GameObject keyHandler1;
@@ -65,6 +70,11 @@ public class InventoryController : MonoBehaviour
         {
             currentKeyNumberText.text = $"Current number: {keysCount[1].number}";
         }
+
+        coinTextInventory.text = coinsCount.ToString();
+        keyTextInventory.text = keysCount.ToString();
+        runeTextInventory.text = runesCount.ToString();
+        ballTextInventory.text = ballsCount.ToString();
     }
 
     public void SetNeededKeyDoor(int key, GameObject door)
