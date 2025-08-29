@@ -254,7 +254,7 @@ MonoBehaviour:
   runesCount: 2
   neededKey: 1
   currentDoor: {fileID: 0}
-  keysInInventory: 2
+  keysInInventory: 1
 --- !u!1 &68547344
 GameObject:
   m_ObjectHideFlags: 0
@@ -11928,6 +11928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30c41c95240fd0447a3ad1347aa8294c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonSkinText: {fileID: 0}
   joystick: {fileID: 2929252283247926032}
   moveSpeed: 5
   rotationSpeed: 20

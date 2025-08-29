@@ -52,6 +52,11 @@ public class InventoryController : MonoBehaviour
 
     private void Update()
     {
+        coinTextInventory.text = coinsCount.ToString();
+        keyTextInventory.text = keysInInventory.ToString();
+        runeTextInventory.text = runesCount.ToString();
+        ballTextInventory.text = ballsCount.ToString();
+        
         if (key1Text.gameObject.activeSelf)
             key1Text.text = keysCount[0].number.ToString();
         
@@ -67,13 +72,9 @@ public class InventoryController : MonoBehaviour
         }
         else if (currentKey == 2)
         {
-            currentKeyNumberText.text = $"Current number: {keysCount[1].number}";
+            if (key2Text != null)
+                currentKeyNumberText.text = $"Current number: {keysCount[1].number}";
         }
-
-        coinTextInventory.text = coinsCount.ToString();
-        keyTextInventory.text = keysCount.Count.ToString();
-        runeTextInventory.text = runesCount.ToString();
-        ballTextInventory.text = ballsCount.ToString();
     }
 
     public void SetNeededKeyDoor(int key, GameObject door)

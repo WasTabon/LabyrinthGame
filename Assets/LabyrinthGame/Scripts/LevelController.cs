@@ -66,12 +66,14 @@ public class LevelController : MonoBehaviour
             {
                 foreach (DoorController door in InventoryController.Instance.doors)
                 {
+                    if (door == null)
+                        continue;
                     if (kvp.Value == door.door.MazeType)
                     {
                         if (door.door.isOpened == false)
                         {
                             MusicController.Instance.PlaySpecificSound(looseSound);
-                            loosePanel.SetActive(false);
+                            loosePanel.SetActive(true);
                             Debug.Log("Loose");
                         }
                     }
