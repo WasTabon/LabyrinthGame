@@ -57,6 +57,8 @@ public class BallController : MonoBehaviour
             PlayerPrefs.SetInt("balls", InventoryController.Instance.ballsCount);
             PlayerPrefs.Save();
             
+            LevelController.Instance.CheckWinCondition();
+            
             // Отключаем монету
             gameObject.SetActive(false);
         }

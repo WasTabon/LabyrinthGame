@@ -5,6 +5,12 @@ public class LevelController : MonoBehaviour
 {
     public static LevelController Instance;
 
+    public AudioClip looseSound;
+    public AudioClip winSound;
+    
+    public GameObject loosePanel;
+    public GameObject winPanel;
+    
     public GameObject _maze0f;
     public GameObject _maze90f;
     public GameObject _maze180f;
@@ -38,6 +44,16 @@ public class LevelController : MonoBehaviour
                 break;
         }
     }
+
+    public void CheckWinCondition()
+    {
+        if (InventoryController.Instance.ballsCount >= 3)
+        {
+            MusicController.Instance.PlaySpecificSound(winSound);
+            winPanel.SetActive(true);
+            Debug.Log("Win");
+        }
+    }
     
     public void CheckLoseCondition()
     {
@@ -54,6 +70,8 @@ public class LevelController : MonoBehaviour
                     {
                         if (door.door.isOpened == false)
                         {
+                            MusicController.Instance.PlaySpecificSound(looseSound);
+                            loosePanel.SetActive(false);
                             Debug.Log("Loose");
                         }
                     }

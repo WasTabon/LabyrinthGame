@@ -61,6 +61,20 @@ public class UIController : MonoBehaviour
     {
         SceneManager.LoadScene("HubScene");
     }
+
+    public void HandleWin()
+    {
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentIndex + 1 < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(currentIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
     
     public void HandleCoinText()
     {
