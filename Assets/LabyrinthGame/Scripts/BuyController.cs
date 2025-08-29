@@ -5,6 +5,7 @@ using UnityEngine.Purchasing;
 public class BuyController : MonoBehaviour
 {
     private string _donateId = "com.gemsinapp.pack";
+    private const string PURCHASE_KEY = "donate_purchased";
     
     public GameObject loadingButton;
     public AudioClip buySound;
@@ -16,9 +17,10 @@ public class BuyController : MonoBehaviour
         if (product.definition.id == _donateId)
         {
             Debug.Log("Complete");
-            //SkillController.Instance.money += 50;
-            //PlayerPrefs.SetInt("money", SkillController.Instance.money);
+            HubController.Instance.coinsCount += 50;
+            PlayerPrefs.SetInt("coins", HubController.Instance.coinsCount);
             PlayerPrefs.Save();
+
             MusicController.Instance.PlaySpecificSound(buySound);
             loadingButton.SetActive(false);
             panel.SetActive(true);

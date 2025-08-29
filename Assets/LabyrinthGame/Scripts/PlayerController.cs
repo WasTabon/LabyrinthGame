@@ -1,7 +1,13 @@
+using System;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
+    public TextMeshProUGUI buttonSkinText;
+    
     [Header("Movement")]
     [SerializeField] private Joystick joystick;
     [SerializeField] public float moveSpeed = 5f;
@@ -30,11 +36,80 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 lastClampedPosition; // позиция камеры на границе при выходе
 
+    private bool isTake;
+    
     private void Awake()
     {
+        Instance = this;
+        
         rb = GetComponent<Rigidbody>();
         
         // зробити спавн монеток
+    }
+
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("donate_purchased", 0) == 1)
+        {
+            ApplyPurchaseEffects();
+        }
+    }
+
+    public void UseSkin()
+    {
+        if (isTake)
+            RemoveSkin();
+        else
+            TakeSkin();
+    }
+    
+    public void TakeSkin()
+    {
+        PlayerPrefs.SetInt("donate_purchased", 1);
+        PlayerPrefs.Save();
+        ApplyPurchaseEffects();
+        buttonSkinText.text = "Remove";
+        isTake = true;
+    }
+
+    public void RemoveSkin()
+    {
+        PlayerPrefs.SetInt("donate_purchased", 0);
+        PlayerPrefs.Save();
+        
+        SetActiveInChildren(gameObject, "SM_Chr_Attach_Hair_10", false);
+
+        // включаем female dealer
+        SetActiveInChildren(gameObject, "SM_Chr_Dealer_Female_01", false);
+
+        // выключаем guard
+        SetActiveInChildren(gameObject, "SM_Chr_Security_Guard_Male_01", true);
+        
+        buttonSkinText.text = "Take";
+        isTake = false;
+    }
+    
+    public void ApplyPurchaseEffects()
+    {
+        // включаем волосы
+        SetActiveInChildren(gameObject, "SM_Chr_Attach_Hair_10", true);
+
+        // включаем female dealer
+        SetActiveInChildren(gameObject, "SM_Chr_Dealer_Female_01", true);
+
+        // выключаем guard
+        SetActiveInChildren(gameObject, "SM_Chr_Security_Guard_Male_01", false);
+    }
+    private void SetActiveInChildren(GameObject parent, string targetName, bool active)
+    {
+        Transform[] allChildren = parent.GetComponentsInChildren<Transform>(true);
+        foreach (Transform child in allChildren)
+        {
+            if (child.name == targetName)
+            {
+                child.gameObject.SetActive(active);
+            }
+        }
     }
 
     private void FixedUpdate()

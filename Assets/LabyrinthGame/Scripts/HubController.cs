@@ -114,7 +114,7 @@ public class HubController : MonoBehaviour
 
     public void HandlePlay()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(1);
     }
     
     public void ShowButton(RectTransform button, Vector2 originalPos)
