@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/LabyrinthGame/Scenes/Main 1.unity
     guid: c0bc6f5cb591b6c42b2782816970e9df
   - enabled: 1
+    path: Assets/LabyrinthGame/Scenes/Main 2.unity
+    guid: d14f74cd3a2c463429f179f7f0f38fc3
+  - enabled: 1
+    path: Assets/LabyrinthGame/Scenes/Main 3.unity
+    guid: ddd9ac446b5fd4643930b49c910ef432
+  - enabled: 1
     path: Assets/LabyrinthGame/Scenes/Main 4.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

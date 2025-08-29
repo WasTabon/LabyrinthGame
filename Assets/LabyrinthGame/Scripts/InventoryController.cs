@@ -50,17 +50,16 @@ public class InventoryController : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        // зробити програш якшо не зібрав всі шаріки на карті, зробити загрузку рівней по зростанню сложності
-    }
-
     private void Update()
     {
         if (key1Text.gameObject.activeSelf)
             key1Text.text = keysCount[0].number.ToString();
-        if (key2Text.gameObject.activeSelf)
-            key2Text.text = keysCount[1].number.ToString();
+        
+        if (key2Text != null)
+        {
+            if (key2Text.gameObject.activeSelf)
+                key2Text.text = keysCount[1].number.ToString();
+        }
         
         if (currentKey == 1)
         {
@@ -72,7 +71,7 @@ public class InventoryController : MonoBehaviour
         }
 
         coinTextInventory.text = coinsCount.ToString();
-        keyTextInventory.text = keysCount.ToString();
+        keyTextInventory.text = keysCount.Count.ToString();
         runeTextInventory.text = runesCount.ToString();
         ballTextInventory.text = ballsCount.ToString();
     }
