@@ -10500,6 +10500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0bccfa82f3e09498430e981b397e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _donateId: com.money.bigpack
   loadingButton: {fileID: 689476080}
   buySound: {fileID: 0}
   buttonText: {fileID: 330349113}
@@ -13949,7 +13950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b79b5624d944058bd39aad2b90fb275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productId: com.gemsinapp.pack
+  productId: com.money.bigpack
   buttonType: 0
   automaticallyConfirmTransaction: 1
   onProductFetched:

@@ -4,8 +4,7 @@ using UnityEngine.Purchasing;
 
 public class BuyController : MonoBehaviour
 {
-    private string _donateId = "com.gemsinapp.pack";
-    private const string PURCHASE_KEY = "donate_purchased";
+    public string _donateId = "com.money.bigpack";
     
     public GameObject loadingButton;
     public AudioClip buySound;
