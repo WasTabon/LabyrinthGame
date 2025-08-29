@@ -8,6 +8,8 @@ namespace ProceduralMaze
     {
         public static MazeSpecialSpawner Instance;
 
+        public Dictionary<GameObject, MazeType> ballsInMaze;
+        
         [Header("Special Prefabs")]
         [SerializeField] private GameObject[] specialPrefabs; // какие спец.объекты спавним
         [SerializeField] private int totalCount = 3;          // сколько всего заспавнить
@@ -20,6 +22,8 @@ namespace ProceduralMaze
                 Instance = this;
             else
                 Destroy(gameObject);
+
+            ballsInMaze = new Dictionary<GameObject, MazeType>();
         }
 
         private void Start()
@@ -81,12 +85,31 @@ namespace ProceduralMaze
                 
                 pos.y += 1f;
 
-                Instantiate(
+                GameObject ball = Instantiate(
                     specialPrefabs[i],
                     pos,
                     Quaternion.identity,
                     targetCell.transform
                 );
+                
+                Transform mazeRoot = targetCell.transform.parent;
+                float rotation = mazeRoot.localEulerAngles.y;
+
+                switch (rotation)
+                {
+                    case 0f:
+                        ballsInMaze.Add(ball, MazeType.m0f);
+                        break;
+                    case 90f:
+                        ballsInMaze.Add(ball, MazeType.m90f);
+                        break;
+                    case 180f:
+                        ballsInMaze.Add(ball, MazeType.m180f);
+                        break;
+                    case -90f:
+                        ballsInMaze.Add(ball, MazeType.mN90f);
+                        break;
+                }
             }
 
             spawned = true;

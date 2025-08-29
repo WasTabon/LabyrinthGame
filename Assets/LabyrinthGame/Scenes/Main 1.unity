@@ -228,6 +228,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48b419e0812a67468844cb78146337a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doors:
+  - {fileID: 3649253444343660227}
+  - {fileID: 1671592481}
+  - {fileID: 103804147}
+  - {fileID: 1151280650}
   keyHandler1: {fileID: 1799528520}
   keyHandler2: {fileID: 1507844477}
   notEnoughRunesPanel: {fileID: 355670724}
@@ -241,6 +246,7 @@ MonoBehaviour:
   - number: 1
   - number: 3
   coinsCount: 0
+  ballsCount: 0
   runesCount: 2
   neededKey: 1
   currentDoor: {fileID: 0}
@@ -570,6 +576,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needKey: 3
+  door:
+    MazeType: 0
+    isOpened: 0
 --- !u!65 &103804148
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4018,6 +4027,7 @@ MonoBehaviour:
   runesText: {fileID: 606059242}
   _keysText: {fileID: 456818207}
   _coinsText: {fileID: 248208283}
+  _ballsText: {fileID: 0}
   duration: 0.5
   offset: 1000
 --- !u!1001 &766740826
@@ -6079,6 +6089,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needKey: 4
+  door:
+    MazeType: 0
+    isOpened: 0
 --- !u!65 &1151280651
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8357,6 +8370,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needKey: 2
+  door:
+    MazeType: 0
+    isOpened: 0
 --- !u!65 &1671592482
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13064,6 +13080,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needKey: 1
+  door:
+    MazeType: 0
+    isOpened: 0
 --- !u!1 &3670133119137483665
 GameObject:
   m_ObjectHideFlags: 0

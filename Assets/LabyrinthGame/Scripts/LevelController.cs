@@ -1,3 +1,4 @@
+using ProceduralMaze;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
@@ -37,4 +38,28 @@ public class LevelController : MonoBehaviour
                 break;
         }
     }
+    
+    public void CheckLoseCondition()
+    {
+        // Если у игрока нет ключей и меньше 3 ball
+        if (InventoryController.Instance.keysInInventory <= 0 &&
+            InventoryController.Instance.ballsCount < 3)
+        {
+            // проверяем, есть ли ещё ball'ы в закрытых лабиринтах
+            foreach (var kvp in MazeSpecialSpawner.Instance.ballsInMaze)
+            {
+                foreach (DoorController door in InventoryController.Instance.doors)
+                {
+                    if (kvp.Value == door.door.MazeType)
+                    {
+                        if (door.door.isOpened == false)
+                        {
+                            Debug.Log("Loose");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }

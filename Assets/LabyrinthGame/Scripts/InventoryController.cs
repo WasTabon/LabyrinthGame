@@ -13,6 +13,8 @@ public class InventoryController : MonoBehaviour
 {
     public static InventoryController Instance;
 
+    public List<DoorController> doors;
+    
     public GameObject keyHandler1;
     public GameObject keyHandler2;
     
@@ -41,6 +43,11 @@ public class InventoryController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        // зробити програш якшо не зібрав всі шаріки на карті, зробити загрузку рівней по зростанню сложності
     }
 
     private void Update()
@@ -85,9 +92,11 @@ public class InventoryController : MonoBehaviour
         else
         {
             keyPanel.SetActive(false);
+            currentDoor.GetComponent<DoorController>().door.isOpened = true;
             currentDoor.SetActive(false);
             keyHandler1.SetActive(false);
             keysInInventory--;
+            LevelController.Instance.CheckLoseCondition();
         }
     }
     public void HandleUseKey2()
@@ -100,9 +109,11 @@ public class InventoryController : MonoBehaviour
         else
         {
             keyPanel.SetActive(false);
+            currentDoor.GetComponent<DoorController>().door.isOpened = true;
             currentDoor.SetActive(false);
             keyHandler2.SetActive(false);
             keysInInventory--;
+            LevelController.Instance.CheckLoseCondition();
         }
     }
 
