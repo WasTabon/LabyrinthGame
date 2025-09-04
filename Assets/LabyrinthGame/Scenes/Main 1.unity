@@ -5573,8 +5573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0afd0fa91a8c04742a62db0ff6c5b39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  looseSound: {fileID: 0}
-  winSound: {fileID: 0}
+  looseSound: {fileID: 8300000, guid: 09aa422755051154381da38e9ecef07a, type: 3}
+  winSound: {fileID: 8300000, guid: b85d8465e3631634682d88403bfb6400, type: 3}
   loosePanel: {fileID: 815023024}
   winPanel: {fileID: 446618643}
   _maze0f: {fileID: 0}
@@ -9383,7 +9383,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d342b0149694c0d4bb9382ed68814452, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
@@ -9487,7 +9487,7 @@ MonoBehaviour:
   _soundButtonIconOff: {fileID: 0}
   _audioSourceMusic: {fileID: 1357913086}
   _audioSourceSound: {fileID: 1925093848}
-  _uiClickSound: {fileID: 0}
+  _uiClickSound: {fileID: 8300000, guid: 043c1718b2aa5b24f8dc3ee2d7dfa069, type: 3}
 --- !u!1 &1380501215
 GameObject:
   m_ObjectHideFlags: 0

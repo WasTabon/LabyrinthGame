@@ -2820,8 +2820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0afd0fa91a8c04742a62db0ff6c5b39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  looseSound: {fileID: 0}
-  winSound: {fileID: 0}
+  looseSound: {fileID: 8300000, guid: 09aa422755051154381da38e9ecef07a, type: 3}
+  winSound: {fileID: 8300000, guid: b85d8465e3631634682d88403bfb6400, type: 3}
   loosePanel: {fileID: 1951066307101601604}
   winPanel: {fileID: 1951066307101601603}
   _maze0f: {fileID: 0}
@@ -5253,7 +5253,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d342b0149694c0d4bb9382ed68814452, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
@@ -5357,7 +5357,7 @@ MonoBehaviour:
   _soundButtonIconOff: {fileID: 0}
   _audioSourceMusic: {fileID: 1357913086}
   _audioSourceSound: {fileID: 1925093848}
-  _uiClickSound: {fileID: 0}
+  _uiClickSound: {fileID: 8300000, guid: 043c1718b2aa5b24f8dc3ee2d7dfa069, type: 3}
 --- !u!1001 &1385434065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8263,6 +8263,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 350271616478728931, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 350271616478728931, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 350271616478728931, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 350271616478728931, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 350271616478728931, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 350271616478728931, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -250
+      objectReference: {fileID: 0}
     - target: {fileID: 570985146283362192, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8291,6 +8315,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4350141431251675765, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350141431251675765, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6773463643858869615, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8299,6 +8331,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 51407522}
+    - target: {fileID: 7274412203386820298, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7299131205665861171, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8410,6 +8446,10 @@ PrefabInstance:
     - target: {fileID: 8455854250810697589, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659204189471486520, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.19503784
       objectReference: {fileID: 0}
     - target: {fileID: 8763250739077408841, guid: 91803091bd652fd4e810b3e617ed2f8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
